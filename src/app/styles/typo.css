@@ -1,0 +1,116 @@
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: var(--headings-font-family);
+    font-weight: var(--headings-font-weight);
+    line-height: var(--headings-line-height);
+    color: var(--headings-color);
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+    margin-top: 1rem;
+    margin-bottom: .25rem;
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 1rem;
+    margin-bottom: .25rem;
+}
+
+/*h1, .h1 { font-size: $font-size-h1; }*/
+/*h2, .h2 { font-size: $font-size-h2; }*/
+h3, .h3 {
+    font-size: var(--font-size-headings);
+}
+
+h4, .h4 {
+    font-size: var(--font-size-semi-heading);
+}
+
+h5, .h5 {
+    font-size: var(--font-size-regular);
+}
+
+h6, .h6 {
+    font-size: var(--font-size-small);
+}
+
+
+p {
+    margin: 0 0 calc(var(--line-height-computed) / 2);
+}
+
+/* Alignment */
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+/* Transformation */
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+/* Contextual colors */
+.text-muted {
+    color: var(--color-on-disabled);
+}
+
+.bg-primary {
+    color: var(--color-white);
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: calc(var(--line-height-computed) / 2);
+}
+
+ol ul,
+ol ol {
+    margin-bottom: 0;
+}
+
+/* List options */
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+    margin-left: -5px;
+}
+.list-inline > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
