@@ -1,5 +1,5 @@
-import Card from "../Card/Card";
-import styles from './HotNews.module.css'
+import Card from "../../entities/Card";
+import styles from './styles.module.css'
 
 function HotNews() {
   return (

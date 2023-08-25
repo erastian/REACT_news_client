@@ -1,8 +1,8 @@
+import { NavLink } from "react-router-dom";
 import TopMenu from "./TopMenu";
 import UserMenu from "./UserMenu";
-import styles from './Header.module.css';
+import styles from './styles.module.css';
 import logo from '../../assets/logo.svg'
-import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
