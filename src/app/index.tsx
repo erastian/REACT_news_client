@@ -1,8 +1,10 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './styles/index.css'
-import { Routing } from '../pages';
-import Header from "../widgets/Header";
-import { Suspense } from "react";
+import Header from "../widgets/header";
+import { lazy, Suspense } from "react";
+
+const HomePage = lazy(() => import('../pages/home'));
+const NotFoundPage = lazy(() => import('../pages/404page'));
 
 
 function App() {
@@ -12,7 +14,10 @@ function App() {
         <BrowserRouter>
           <Suspense fallback="Loading...">
             <Header />
-            <Routing />
+            <Routes>
+              <Route index element={ <HomePage/> }/>
+              <Route path='*' element={ <NotFoundPage/> }/>
+            </Routes>
           </Suspense>
         </BrowserRouter>
       </>

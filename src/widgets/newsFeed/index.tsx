@@ -1,4 +1,4 @@
-import Card from "../../entities/Card";
+import Card from "../../entities/card";
 import Button from "../../shared/button/Button";
 
 function NewsFeed() {
