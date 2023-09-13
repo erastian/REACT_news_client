@@ -1,4 +1,4 @@
-import Button from "../../ui/button/Button";
+import Button from "../../shared/button/Button";
 
 function UserMenu() {
   return (

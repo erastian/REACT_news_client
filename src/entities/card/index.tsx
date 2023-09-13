@@ -1,4 +1,4 @@
-import styles from './Card.module.css';
+import styles from './styles.module.css';
 import img from '../../assets/097fbdbabc0ee9f3a8783847b8e9e409.jpg'
 import iconMessages from '../../assets/icons/messages.svg'
 import iconUsers from '../../assets/icons/profile-2user.svg'
