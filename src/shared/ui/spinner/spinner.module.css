@@ -1,0 +1,36 @@
+.circular {
+    display: inline-block;
+    position: relative;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: auto;
+}
+.circular div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 4px;
+    border: 4px solid var(--color-primary-accent);
+    border-radius: 50%;
+    animation: circular 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: var(--color-primary-accent) transparent transparent transparent;
+}
+.circular div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+.circular div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+.circular div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+@keyframes circular {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,5 @@
+.feedWrapper {
+    display: flex;
+    margin-top: 2rem;
+    min-height: 22rem;
+}

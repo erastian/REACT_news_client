@@ -31,9 +31,12 @@
     padding: 0.125rem 0;
     justify-content: center;
     align-items: center;
-    color: var(--color-primary-accent);
     font-weight: 600;
     line-height: normal;
+}
+
+.card :global .details .category a {
+    color: var(--color-primary-accent);
 }
 .card :global .details .counters {
     display: inline-flex;

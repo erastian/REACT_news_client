@@ -1,27 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import './styles/index.css'
-import Header from "../widgets/header";
-import { lazy, Suspense } from "react";
+import ReactDOM from 'react-dom/client'
+import { Provider } from './providers'
 
-const HomePage = lazy(() => import('../pages/home'));
-const NotFoundPage = lazy(() => import('../pages/404page'));
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<Provider />)
 
-
-function App() {
-
-  return (
-      <>
-        <BrowserRouter>
-          <Suspense fallback="Loading...">
-            <Header />
-            <Routes>
-              <Route index element={ <HomePage/> }/>
-              <Route path='*' element={ <NotFoundPage/> }/>
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </>
-  )
-}
-
-export default App;
