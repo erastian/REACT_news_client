@@ -22,15 +22,16 @@ export function NewsFeed() {
   if (error)
     return (error.toString())
 
-  console.log(newsFeed.data)
-
   return (
-      <div className={styles.feedWrapper}>
-        { newsFeed.data.map((article: ArticleDTO) => (<Card articleData = { article } key={ article.id } />)) }
+      <div className={ styles.feedWrapper }>
+        { newsFeed.data.map((article: ArticleDTO) => (<Card articleData={ article } key={ article.id }/>)) }
 
-        <Button style="primary outline mx-auto mb-5" size="large" type="button" onClick={ () => {
-          console.log('btn pressed')
-        } }>load more news</Button>
+        <div className="flex-grid">
+
+          <Button style="primary outline mx-auto mb-5" size="large" type="button" onClick={ () => {
+            console.log('btn pressed')
+          } }>load more news</Button>
+        </div>
       </div>
   );
 }

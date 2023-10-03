@@ -8,49 +8,29 @@ import { ArticleDTO } from "~shared/api/Api.ts";
 
 type CardInterface = {
   articleData: ArticleDTO,
-  pinned: boolean
+  pinned?: boolean
 }
 
-export function Card( articleData, pinned= false ): CardInterface {
-
-  if (pinned) return <div className={ `${ styles.card } ${ styles.pinned } d-col-3 m-col-6` }>
-    <div className={ `${ styles.mainImage } d-col-12` }>
-      <img src={ img } alt="a"/>
-    </div>
-    <div className={ `newsPreview d-col-12` }>
-      <div className="details">
-        <span className="category">
-          <Link to={PAGE_PATH.category.categoryURL(articleData.category.url)}>{ articleData.category.title }</Link>
-        </span>
-        <div className="counters">
-          <span className="comments"><img src={ iconMessages } alt="icon"></img> { articleData._count.comments }</span>
-          <span className="views"><img src={ iconUsers } alt="icon"></img> 500</span>
-        </div>
-      </div>
-      <h3>{ articleData.title }</h3>
-      <div className="description">{ articleData.description }</div>
-    </div>
-  </div>
-
+export function Card({ articleData, pinned = false }: CardInterface) {
   return (
-      <div className="flex-grid">
-        <div className={ `${ styles.card } d-col-12 m-col-12` }>
-          <div className={ `${ styles.mainImage } d-col-3 m-col-6` }>
-            <img src={ img } alt="a"/>
-          </div>
-          <div className={ `newsPreview d-col-9 m-col-6` }>
-            <div className="details">
+      <div className={ `${ styles.card } ${ pinned ? `${ styles.pinned } d-col-3 m-col-6` : 'd-col-12 m-col-12' }` }>
+        <div className={ `${ styles.mainImage } ${ pinned ? 'd-col-12' : 'd-col-3 m-col-6' }` }>
+          <Link to={ PAGE_PATH.article.articleURL(articleData.url) }><img src={ img } alt="a"/></Link>
+        </div>
+        <div className={ `newsPreview ${ pinned ? 'd-col-12' : 'd-col-9 m-col-6' }` }>
+          <div className="details">
               <span className="category">
-                <Link to={PAGE_PATH.category.categoryURL(articleData.category.url)}>{ articleData.category.title }</Link>
+                <Link
+                    to={ PAGE_PATH.category.categoryURL(articleData.category.url) }>{ articleData.category.title }</Link>
               </span>
-              <div className="counters">
-                <span className="comments"><img src={ iconMessages } alt="icon"></img> { articleData._count.comments }</span>
-                <span className="views"><img src={ iconUsers } alt="icon"></img> 500</span>
-              </div>
+            <div className="counters">
+                <span className="comments"><img src={ iconMessages }
+                                                alt="icon"></img> { articleData._count.comments }</span>
+              <span className="views"><img src={ iconUsers } alt="icon"></img> 500</span>
             </div>
-            <h3>{ articleData.title }</h3>
-            <div className="description">{ articleData.description }</div>
           </div>
+          <h3><Link to={ PAGE_PATH.article.articleURL(articleData.url) }>{ articleData.title }</Link></h3>
+          <div className="description">{ articleData.description }</div>
         </div>
       </div>
   );
