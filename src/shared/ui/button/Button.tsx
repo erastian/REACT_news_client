@@ -1,7 +1,7 @@
 import styles from './Button.module.css';
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
-type ButtonProps = {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   style?: string;
   size?: string;
   type?: "button" | "submit";

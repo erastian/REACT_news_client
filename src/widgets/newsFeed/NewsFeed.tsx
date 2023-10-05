@@ -4,7 +4,7 @@ import styles from './news-feed.module.css'
 import Card from "~entities/card";
 import { Button } from "~shared/ui/button";
 import { Spinner } from "~shared/ui/spinner";
-import { ArticleDTO } from "~shared/api/Api.ts";
+import { IArticle } from "~shared/api/Api.ts";
 
 // import { useInfiniteArticles } from "~widgets/newsFeed/api/feedApi.tsx";
 
@@ -24,7 +24,7 @@ export function NewsFeed() {
 
   return (
       <div className={ styles.feedWrapper }>
-        { newsFeed.data.map((article: ArticleDTO) => (<Card articleData={ article } key={ article.id }/>)) }
+        { newsFeed.data.map((article: IArticle) => (<Card articleData={ article } key={ article.id }/>)) }
 
         <div className="flex-grid">
 

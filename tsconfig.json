@@ -21,26 +21,22 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src",
     "paths": {
-      "~app": ["./app"],
-      "~app/*": ["./app/*"],
-
-      "~processes": ["./processes"],
-      "~processes/*": ["./processes/*"],
-
-      "~pages": ["./pages"],
-      "~pages/*": ["./pages/*"],
-
-      "~widgets": ["./widgets"],
-      "~widgets/*": ["./widgets/*"],
-
-      "~features": ["./features"],
-      "~features/*": ["./features/*"],
-
-      "~entities": ["./entities"],
-      "~entities/*": ["./entities/*"],
-
-      "~shared": ["./shared"],
-      "~shared/*": ["./shared/*"]
+      "~app/": ["app/"],
+      "~app/*": ["app/*"],
+      "~assets/": ["app/"],
+      "~assets/*": ["app/*"],
+      "~processes/": ["processes/"],
+      "~processes/*": ["processes/*"],
+      "~pages/": ["pages/"],
+      "~pages/*": ["pages/*"],
+      "~widgets/": ["widgets/"],
+      "~widgets/*": ["widgets/*"],
+      "~features/": ["features/"],
+      "~features/*": ["features/*"],
+      "~entities/": ["entities/"],
+      "~entities/*": ["entities/*"],
+      "~shared/": ["shared/"],
+      "~shared/*": ["shared/*"]
     }
   },
   "include": ["src"],

@@ -1,3 +1,3 @@
-import { topMenu } from "./TopMenu.tsx";
+import { TopMenu } from "./TopMenu.tsx";
 
-export default topMenu;
+export default TopMenu;

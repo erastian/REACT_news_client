@@ -1,6 +1,6 @@
 import Card from "../../entities/card";
 import styles from './hot-news.module.css'
-import { Spinner } from "~shared/ui/spinner";
+// import { Spinner } from "~shared/ui/spinner";
 
 export function HotNews() {
   const demoData = {

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { PAGE_PATH } from "~shared/lib/router/paths.ts";
 
-export function topMenu() {
+export function TopMenu() {
   return (
       <ul className='top-menu'>
         <li>

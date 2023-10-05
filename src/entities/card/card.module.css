@@ -19,14 +19,14 @@
     margin-right: 0;
 }
 
-.card :global .details {
+.card .details {
     width: 100%;
     display: flex;
     font-size: var(--font-size-small);
     color: var(--color-tertiary-dark);
 }
 
-.card :global .details .category {
+.card .details .category {
     display: inline-flex;
     padding: 0.125rem 0;
     justify-content: center;
@@ -35,41 +35,41 @@
     line-height: normal;
 }
 
-.card :global .details .category a {
+.card .details .category a {
     color: var(--color-primary-accent);
 }
-.card :global .details .counters {
+.card .details .counters {
     display: inline-flex;
     align-items: flex-start;
     gap: 1rem;
     margin-left: auto;
 }
-.card :global .details .comments {
+.card .details .comments {
     margin-left: auto;
     display: flex;
     gap: .125rem;
     align-items: center;
 }
 
-.card :global .details .comments img {
+.card .details .comments img {
     height: 1rem;
     width: 1rem;
 }
 
-.card :global .details .views {
+.card .details .views {
     display: flex;
     gap: .125rem;
     align-items: center;
 }
-.card :global .details .views img {
+.card .details .views img {
     height: 1rem;
     width: 1rem;
 }
 
-.card :global h3 {
+.card h3 {
     text-align: start;
 }
 
-.card :global .description {
+.card .description {
     text-align: start;
 }

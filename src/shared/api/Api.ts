@@ -1,4 +1,4 @@
-export interface ArticleDTO {
+export interface IArticle {
   id: string,
   isPublished: boolean,
   title: string,
