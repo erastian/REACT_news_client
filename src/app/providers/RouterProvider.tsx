@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { MainLayout } from "~pages/main-layout/MainLayout.tsx";
-import { PAGE_PATH } from "~shared/lib/router/paths.ts";
+import { PAGE_PATH } from "~shared/config";
 
 const HomePage = lazy(() => import('~pages/home'));
 const ArticlePage = lazy(() => import('~pages/article-page'));

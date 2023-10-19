@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { PAGE_PATH } from "~shared/lib/router/paths.ts";
+import { PAGE_PATH } from "~shared/config";
 
 export function TopMenu() {
   return (

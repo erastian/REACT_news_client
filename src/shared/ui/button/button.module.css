@@ -38,6 +38,11 @@
 .button:global(.primary):disabled {
     background: var(--color-disabled);
     color: var(--color-on-disabled);
+    border: none;
+}
+
+.button:global(.primary):disabled:hover {
+    box-shadow: none;
 }
 
 .button:global(.primary.outline) {
@@ -69,4 +74,10 @@
 .button:global(.primary.outline):disabled {
     background: var(--color-disabled);
     color: var(--color-on-disabled);
+    border: none;
+    cursor: not-allowed;
+}
+
+.button:global(.primary.outline):disabled:hover {
+    box-shadow: none;
 }

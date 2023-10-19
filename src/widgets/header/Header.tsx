@@ -3,7 +3,7 @@ import TopMenu from "../../entities/topMenu";
 import UserMenu from "../../entities/userMenu";
 import styles from './header.module.css';
 import logo from '../../assets/logo.svg'
-import { PAGE_PATH } from "~shared/lib/router/paths.ts";
+import { PAGE_PATH } from "~shared/config";
 
 export function Header() {
   return (

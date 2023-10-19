@@ -1,27 +1,27 @@
-import styles from './Button.module.css';
-import React, { ReactNode } from "react";
+import styles from './button.module.css';
+import React from "react";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  style?: string;
-  size?: string;
-  type?: "button" | "submit";
-  children?: ReactNode;
+  size?: '' | 'semi' | 'large';
+  variant?: string;
   onClick?: () => void;
 }
 
 export function Button(props: ButtonProps) {
   const {
-    style,
+    className,
+    variant,
     size,
     type = 'button',
     onClick,
+    disabled,
     children
   } = props;
 
-  const customStyles = `${ size ? styles[size] : '' } ${ style ? style.toString() : '' }`;
+  const customStyles = `${ size ? styles[size] : '' } ${ variant ? variant.toString() : '' }`;
 
   return (
-      <button type={ type } className={ `${ styles.button } ${ customStyles }` }
-              onClick={ onClick }>{ children }</button>
+      <button type={ type } className={ `${ className } ${ styles.button } ${ customStyles }` }
+              onClick={ onClick } disabled={ disabled }>{ children }</button>
   );
 }

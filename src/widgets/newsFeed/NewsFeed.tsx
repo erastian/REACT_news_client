@@ -1,36 +1,44 @@
-import { useQuery } from "react-query";
-
 import styles from './news-feed.module.css'
 import Card from "~entities/card";
 import { Button } from "~shared/ui/button";
 import { Spinner } from "~shared/ui/spinner";
-import { IArticle } from "~shared/api/Api.ts";
+import { articleApi } from "~entities/article";
+import { FullPageWrapper } from '~shared/ui/fullPageWrapper'
 
-// import { useInfiniteArticles } from "~widgets/newsFeed/api/feedApi.tsx";
+type NewsFeedProps = {
+  query: articleApi.GlobalFeedQuery;
+}
 
-export function NewsFeed() {
-  const { isLoading, data: newsFeed, error } = useQuery({
-    queryKey: [ 'newsFeed' ],
-    queryFn: async () => {
-      const res = await fetch('http://localhost:8000/articles')
-      return res.json()
-    }
-  });
+export function NewsFeed(props: NewsFeedProps) {
+  const { query } = props;
 
-  if (isLoading) return <Spinner/>
+  const {
+    data: articlesData,
+    status,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage
+  } = articleApi.useGlobalInfinityArticles(query);
 
-  if (error)
-    return (error.toString())
+  const pages = articlesData?.pages;
+  const items = pages?.flatMap((data) => data) || [];
+
+
+  if (status === 'loading') return <FullPageWrapper><Spinner/></FullPageWrapper>
+
+  if (status === 'error')
+    return <FullPageWrapper>{ error?.toString() }</FullPageWrapper>
 
   return (
       <div className={ styles.feedWrapper }>
-        { newsFeed.data.map((article: IArticle) => (<Card articleData={ article } key={ article.id }/>)) }
+
+        { status === 'success' ? items.map((article: articleApi.IArticle) => (
+            <Card articleData={ article } key={ article.id }/>)) : 'No data' }
 
         <div className="flex-grid">
-
-          <Button style="primary outline mx-auto mb-5" size="large" type="button" onClick={ () => {
-            console.log('btn pressed')
-          } }>load more news</Button>
+          <Button className='mx-auto mb-5' disabled={ !hasNextPage || isFetchingNextPage } variant="primary outline"
+                  size="large" type="button" onClick={ fetchNextPage }>load more news</Button>
         </div>
       </div>
   );

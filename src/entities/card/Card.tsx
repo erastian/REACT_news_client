@@ -1,12 +1,12 @@
 import styles from './card.module.css';
 import ImgNotFound from '~assets/img-not-found.svg'
 import { Link } from "react-router-dom";
-import { PAGE_PATH } from "~shared/lib/router/paths.ts";
-import { IArticle } from "~shared/api/Api.ts";
+import { PAGE_PATH } from "~shared/config";
+import { articleApi } from "~entities/article";
 import Icon from "~shared/ui/icon";
 
 type CardInterface = {
-  articleData: IArticle,
+  articleData: articleApi.IArticle,
   pinned?: boolean
 }
 

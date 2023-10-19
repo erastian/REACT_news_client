@@ -1,5 +1,5 @@
 import { Button } from "~shared/ui/button";
-import { PAGE_PATH } from "~shared/lib/router/paths.ts";
+import { PAGE_PATH } from "~shared/config";
 import { Link } from "react-router-dom";
 
 export function UserMenu() {

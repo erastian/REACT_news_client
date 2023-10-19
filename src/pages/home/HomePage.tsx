@@ -9,7 +9,7 @@ export function HomePage() {
   return (
       <FullPageWrapper>
         <HotNews/>
-        <NewsFeed/>
+        <NewsFeed query={{ limit: 10, offset: 0}}/>
       </FullPageWrapper>
   );
 }
