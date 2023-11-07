@@ -5,7 +5,7 @@ type IIconProps = {
       'messages' |
       'users' |
       'user' |
-      'unpublish' |
+      'unPublishIcon' |
       'trash' |
       'publish' |
       'ok' |
@@ -18,13 +18,16 @@ type IIconProps = {
       'cancel' |
       'arrow-up' |
       'arrow-left' |
-      'arrow-down';
+      'arrow-down' |
+      'isPublishedIcon' |
+      'isUnpublishedIcon';
   size?: number;
+  color?: string;
 }
 
-export function Icons({ name, size = 20 }: IIconProps) {
+export function Icons({ name, size = 20, color }: IIconProps) {
   return (
-      <svg width={size} height={size}>
+      <svg width={size} height={size} stroke={color}>
         <use href={`${icons}#${name}`} />
       </svg>
   )

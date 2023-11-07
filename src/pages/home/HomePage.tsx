@@ -1,7 +1,7 @@
 import HotNews from "~widgets/hotNews";
 import NewsFeed from "~widgets/newsFeed";
 
-import useDocumentTitle from "~shared/document-title";
+import useDocumentTitle from "~shared/lib/useDocumentTitle";
 import { FullPageWrapper } from "~shared/ui/fullPageWrapper";
 
 export function HomePage() {
@@ -9,7 +9,7 @@ export function HomePage() {
   return (
       <FullPageWrapper>
         <HotNews/>
-        <NewsFeed query={{ limit: 10, offset: 0}}/>
+        <NewsFeed />
       </FullPageWrapper>
   );
 }

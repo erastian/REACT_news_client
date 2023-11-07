@@ -1,31 +1,30 @@
 import styles from './news-feed.module.css'
-import Card from "~entities/card";
+import cn from "classnames";
+import { articleApi, IArticle } from "~entities/article";
+
+import { Card } from "~entities/card";
 import { Button } from "~shared/ui/button";
 import { Spinner } from "~shared/ui/spinner";
-import { articleApi } from "~entities/article";
 import { FullPageWrapper } from '~shared/ui/fullPageWrapper'
 
-type NewsFeedProps = {
-  query: articleApi.GlobalFeedQuery;
-}
 
-export function NewsFeed(props: NewsFeedProps) {
-  const { query } = props;
+export function NewsFeed() {
+  const initialQuery = { limit: 5, offset: 0 };
 
   const {
-    data: articlesData,
+    data,
     status,
     error,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage
-  } = articleApi.useGlobalInfinityArticles(query);
+  } = articleApi.useInfinityArticles(initialQuery);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const pages = data?.pages;
+  const items: IArticle[] = pages?.flatMap((data: IArticle[]) => data) || [];
 
-  const pages = articlesData?.pages;
-  const items = pages?.flatMap((data) => data) || [];
-
-
-  if (status === 'loading') return <FullPageWrapper><Spinner/></FullPageWrapper>
+  if (status === 'pending') return <FullPageWrapper><Spinner/></FullPageWrapper>
 
   if (status === 'error')
     return <FullPageWrapper>{ error?.toString() }</FullPageWrapper>
@@ -33,12 +32,12 @@ export function NewsFeed(props: NewsFeedProps) {
   return (
       <div className={ styles.feedWrapper }>
 
-        { status === 'success' ? items.map((article: articleApi.IArticle) => (
-            <Card articleData={ article } key={ article.id }/>)) : 'No data' }
+        { items.map((article: IArticle) => (
+            <Card articleData={ article } key={ article.id }/>)) }
 
         <div className="flex-grid">
-          <Button className='mx-auto mb-5' disabled={ !hasNextPage || isFetchingNextPage } variant="primary outline"
-                  size="large" type="button" onClick={ fetchNextPage }>load more news</Button>
+          <Button className={cn('mx-auto', 'mb-5')} disabled={ !hasNextPage || isFetchingNextPage } variant="outline"
+                  size="lg" onClick={ fetchNextPage }>LOAD MORE NEWS</Button>
         </div>
       </div>
   );

@@ -1,75 +1,94 @@
 .card {
     display: flex;
+    padding: 2rem 0;
+    border-bottom: .0625rem solid var(--color-gray);
 }
-.card.pinned {
+.pinned {
+    padding: unset;
     flex-direction: column;
+    border-bottom: none;
 }
 
-.card .mainImage img {
+.mainImage img,
+.mainImage svg {
     aspect-ratio: 1 / 1;
     width: 100%;
     max-height: 100%;
     object-fit: cover;
     margin-bottom: .5rem;
 }
-.card .mainImage {
+.mainImage {
     margin-right: 1.5rem;
 }
-.card.pinned .mainImage {
+.pinned .mainImage {
     margin-right: 0;
 }
-
-.card .details {
+.details {
+    flex-shrink: 1;
+}
+.info {
     width: 100%;
     display: flex;
     font-size: var(--font-size-small);
     color: var(--color-tertiary-dark);
 }
+.pinned .info {
+    margin-top: 0.63rem;
+}
 
-.card .details .category {
+.category {
     display: inline-flex;
     padding: 0.125rem 0;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     font-weight: 600;
     line-height: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.card .details .category a {
+.category a {
     color: var(--color-primary-accent);
 }
-.card .details .counters {
+.counters {
     display: inline-flex;
     align-items: flex-start;
     gap: 1rem;
     margin-left: auto;
 }
-.card .details .comments {
+.pinned .counters {
+    margin: auto 0 auto auto;
+}
+.pinned .counters svg {
+    margin-top: 0.1rem;
+}
+.comments {
     margin-left: auto;
     display: flex;
     gap: .125rem;
     align-items: center;
 }
 
-.card .details .comments img {
-    height: 1rem;
-    width: 1rem;
+.comments svg {
+    height: 1.1rem;
+    width: 1.1rem;
 }
 
-.card .details .views {
+.views {
     display: flex;
     gap: .125rem;
     align-items: center;
 }
-.card .details .views img {
-    height: 1rem;
-    width: 1rem;
+.views svg {
+    height: 1.1rem;
+    width: 1.1rem;
 }
 
-.card h3 {
+h3 {
     text-align: start;
 }
 
-.card .description {
+.description {
     text-align: start;
 }

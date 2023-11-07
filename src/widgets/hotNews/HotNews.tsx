@@ -1,39 +1,26 @@
-import Card from "../../entities/card";
+import { articleApi, IArticle } from "~entities/article";
+import cn from 'classnames';
+
+import { PinnedCard } from "~entities/card";
 import styles from './hot-news.module.css'
-// import { Spinner } from "~shared/ui/spinner";
+import { FullPageWrapper } from "~shared/ui/fullPageWrapper";
+import { Spinner } from "~shared/ui/spinner";
 
 export function HotNews() {
-  const demoData = {
-    id: 'asgag',
-    title: 'adfgkunsdgoisd',
-    description: 'sdfsdgsdgsdg',
-    isPublished: true,
-    url: 'soignsdogin',
-    cover: '',
-    image: '',
-    articleBody: 'lorem',
-    authorID: '1',
-    categoryID: '',
-    createdAt: '',
-    updatedAt: '',
-    category: {
-      id: '234',
-      title: 'adhadfhadfhadhf',
-      url: 'afadsfgasgd',
-      createdAt: 'adgadfgag',
-      updatedAt: 'afwefwger'
-    },
-    _count: {
-      comments: 2
-    }
-  }
+  const {data: pinnedArticlesData, status, error} = articleApi.usePinnedArticlesQuery();
+  const items: IArticle[] = pinnedArticlesData?.data || [];
+
+  if (status === 'pending') return <FullPageWrapper><Spinner/></FullPageWrapper>
+
+  if (status === 'error')
+    return <FullPageWrapper>{ error?.toString() }</FullPageWrapper>
+
   return (
 
-      <div className={`${styles.hotNews} flex-grid`}>
-        <Card articleData={demoData} pinned/>
-        <Card articleData={demoData} pinned/>
-        <Card articleData={demoData} pinned/>
-        <Card articleData={demoData} pinned/>
+      <div className={cn('flex-grid', styles.hotNews)}>
+
+        { items.map((article: IArticle) => (
+            <PinnedCard articleData={ article } key={ article.id }/>))}
       </div>
   );
 }

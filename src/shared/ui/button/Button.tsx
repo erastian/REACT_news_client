@@ -1,27 +1,26 @@
 import styles from './button.module.css';
 import React from "react";
+import cn from "classnames";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  size?: '' | 'semi' | 'large';
-  variant?: string;
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'filled' | 'outline';
   onClick?: () => void;
 }
 
-export function Button(props: ButtonProps) {
+export function Button(props: Props) {
   const {
     className,
-    variant,
-    size,
+    variant = 'primary',
+    size = 'md',
     type = 'button',
     onClick,
     disabled,
     children
   } = props;
 
-  const customStyles = `${ size ? styles[size] : '' } ${ variant ? variant.toString() : '' }`;
-
   return (
-      <button type={ type } className={ `${ className } ${ styles.button } ${ customStyles }` }
+      <button type={ type } className={cn(className, styles[variant], styles.button, styles[size])}
               onClick={ onClick } disabled={ disabled }>{ children }</button>
   );
 }

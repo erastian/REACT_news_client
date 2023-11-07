@@ -1,5 +1,5 @@
 import { apiInstance } from "~shared/api/base.ts";
-import { IArticle } from "~entities/article/api/articleApi.ts";
+import { IArticle } from "~entities/article/";
 
 export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
@@ -32,9 +32,16 @@ export enum ContentType {
 export type QueryParamsType = Record<string | number, object>;
 export type ResponseFormat = keyof Omit<Body, 'body' | 'bodyUsed'>;
 
-type ArticleListQuery = {
-  data: IArticle[];
-};
+// type ArticleListQuery = {
+//   data: IArticle[];
+// };
+
+export interface IArticleListData<T> {
+  limit: number;
+  offset: number;
+  count: number;
+  data: T[];
+}
 
 
 export class Api {
@@ -46,7 +53,13 @@ export class Api {
         },
         params: RequestParams = {}
     ) => {
-      return apiInstance.get<ArticleListQuery>(`/articles?offset=${query?.offset}&limit=${query?.limit}`, {params})
+      return apiInstance.get<IArticleListData<IArticle>>(`/articles?offset=${query?.offset}&limit=${query?.limit}`, {params})
+    },
+    getPinnedArticles: () => {
+      return apiInstance.get<IArticleListData<IArticle>>(`/articles?pinned=true`)
+    },
+    getArticle: (ArticleURL: string) => {
+      return apiInstance.get(`/articles/${ArticleURL}`)
     }
   }
 }

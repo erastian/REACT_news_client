@@ -1,30 +1,7 @@
 import { Api, RequestParams } from "~shared/api/Api.ts";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { IArticle } from './types';
 
-export interface IArticle {
-  id: string,
-  isPublished: boolean,
-  title: string,
-  url: string,
-  description: string,
-  cover: string,
-  image: string,
-  articleBody: string,
-  authorID: string,
-  categoryID: string,
-  createdAt: string,
-  updatedAt: string,
-  category: {
-    id: string,
-    title: string,
-    url: string,
-    createdAt: string,
-    updatedAt: string,
-  },
-  _count: {
-    comments: number,
-  }
-}
 
 export function mapArticle(articleDto: IArticle): IArticle {
   const { ...article } = articleDto;
@@ -47,57 +24,49 @@ export const articleKeys = {
     },
     hotNews: {
       root: () => [ ...articleKeys.articles.root, 'hotNews' ],
-      query: (query: GlobalFeedQuery) => [ ...articleKeys.articles.hotNews.root(), query ]
+      query: () => [ ...articleKeys.articles.hotNews.root() ]
     }
   },
 
   article: {
     root: [ 'article' ],
-    query: (articleURL: string) => [ ...articleKeys.article.root, articleURL ],
+    articleURL: (articleURL: string) => [ ...articleKeys.article.root, articleURL ],
   }
 }
 
-type UseInfinityArticlesProps = {
-  queryKey: unknown[];
-  queryFn: typeof Api.articles.getArticles;
-  query: GlobalFeedQuery;
-  params?: RequestParams;
-}
-
-const useInfinityArticles = (
-    {
-      queryKey,
-      queryFn,
-      query,
-      params,
-    }: UseInfinityArticlesProps) => {
-  const { offset, limit } = query;
-
+export const useInfinityArticles = (
+    query: GlobalFeedQuery,
+    params?: RequestParams
+) => {
   return useInfiniteQuery<IArticle[], Error, IArticle[], unknown[]>({
-    queryKey,
-
-    queryFn: async ({ pageParam = offset }) => {
-      const response = await queryFn({ ...query, offset: pageParam }, { ...params });
+    queryKey: articleKeys.articles.newsFeed.root(),
+    queryFn: async ({ pageParam = query.offset }) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const response = await Api.articles.getArticles({ ...query, offset: pageParam }, { params });
 
       return response.data.map(mapArticle);
     },
-
+    initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => {
-      if (lastPage.length < limit) return null;
+      if (lastPage.length < query.limit) return null;
 
-      const nextPageParam = lastPage.length ? pages.length * limit : null;
-
-      return nextPageParam;
+      return pages.length * query.limit;
     }
   })
 }
 
-export const useGlobalInfinityArticles = (
-    query: GlobalFeedQuery,
-    params?: RequestParams
-) => useInfinityArticles({
-  queryKey: articleKeys.articles.newsFeed.query(query),
-  queryFn: Api.articles.getArticles,
-  query,
-  params,
-});
+export const usePinnedArticlesQuery = () => useQuery({
+  queryKey: articleKeys.articles.hotNews.root(),
+  queryFn: Api.articles.getPinnedArticles,
+})
+
+
+export const useArticle = (articleURL: string) => useQuery<IArticle, Error, IArticle, string[]>({
+  queryKey: articleKeys.article.articleURL(articleURL),
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  queryFn: async (): Promise<IArticle | unknown> => {
+    return await Api.articles.getArticle(articleURL);
+  },
+})
