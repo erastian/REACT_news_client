@@ -1,0 +1,94 @@
+.card {
+    display: flex;
+    padding: 2rem 0;
+    border-bottom: .0625rem solid var(--color-gray);
+}
+.pinned {
+    padding: unset;
+    flex-direction: column;
+    border-bottom: none;
+}
+
+.mainImage img,
+.mainImage svg {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin-bottom: .5rem;
+}
+.mainImage {
+    margin-right: 1.5rem;
+}
+.pinned .mainImage {
+    margin-right: 0;
+}
+.details {
+    flex-shrink: 1;
+}
+.info {
+    width: 100%;
+    display: flex;
+    font-size: var(--font-size-small);
+    color: var(--color-tertiary-dark);
+}
+.pinned .info {
+    margin-top: 0.63rem;
+}
+
+.category {
+    display: inline-flex;
+    padding: 0.125rem 0;
+    justify-content: start;
+    align-items: center;
+    font-weight: 600;
+    line-height: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.category a {
+    color: var(--color-primary-accent);
+}
+.counters {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-left: auto;
+}
+.pinned .counters {
+    margin: auto 0 auto auto;
+}
+.pinned .counters svg {
+    margin-top: 0.1rem;
+}
+.comments {
+    margin-left: auto;
+    display: flex;
+    gap: .125rem;
+    align-items: center;
+}
+
+.comments svg {
+    height: 1.1rem;
+    width: 1.1rem;
+}
+
+.views {
+    display: flex;
+    gap: .125rem;
+    align-items: center;
+}
+.views svg {
+    height: 1.1rem;
+    width: 1.1rem;
+}
+
+h3 {
+    text-align: start;
+}
+
+.description {
+    text-align: start;
+}

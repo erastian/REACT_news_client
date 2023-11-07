@@ -1,0 +1,24 @@
+@media (min-width: 980px) {
+    .header {
+        margin: 0 var(--margin-base-regular-screen);
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 979px) {
+    .header {
+        margin: 0 var(--margin-base-small-screen);
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    height: 5rem;
+    align-items: center;
+    padding: 0.9375rem 0 1rem;
+    flex-shrink: 0;
+}
+
+.header .logo {
+    margin: auto 0;
+}

@@ -1,0 +1,5 @@
+.feedWrapper {
+    display: flex;
+    min-height: 22rem;
+    flex-direction: column;
+}

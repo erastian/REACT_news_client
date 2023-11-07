@@ -1,0 +1,30 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { BrowserRouter } from "react-router-dom";
+import { Router } from './RouterProvider';
+import '../styles/index.css'
+import { Suspense } from "react";
+import { FullPageWrapper } from "~shared/ui/fullPageWrapper";
+import { Spinner } from "~shared/ui/spinner";
+
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    }
+  }
+});
+
+export function Provider() {
+  return (
+      <QueryClientProvider client={ queryClient }>
+        <BrowserRouter>
+          <Suspense fallback={ <FullPageWrapper><Spinner/></FullPageWrapper> }>
+            <Router/>
+          </Suspense>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+  )
+}
