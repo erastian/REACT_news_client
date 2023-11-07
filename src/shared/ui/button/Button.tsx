@@ -1,26 +1,30 @@
-import styles from './button.module.css';
+import styles from "./button.module.css";
 import React from "react";
 import cn from "classnames";
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'filled' | 'outline';
-  onClick?: () => void;
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "filled" | "outline";
 }
 
 export function Button(props: Props) {
   const {
-    className,
-    variant = 'primary',
-    size = 'md',
-    type = 'button',
+    variant = "primary",
+    size = "md",
+    type = "button",
     onClick,
     disabled,
-    children
+    children,
   } = props;
 
   return (
-      <button type={ type } className={cn(className, styles[variant], styles.button, styles[size])}
-              onClick={ onClick } disabled={ disabled }>{ children }</button>
+    <button
+      type={type}
+      className={cn(styles[variant], styles.button, styles[size])}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
   );
 }
