@@ -7,7 +7,12 @@ import { FullPageWrapper } from "~shared/ui/fullPageWrapper";
 import { Spinner } from "~shared/ui/spinner";
 
 export function HotNews() {
-  const {data: pinnedArticlesData, status, error} = articleApi.usePinnedArticlesQuery();
+  const {
+    data: pinnedArticlesData,
+    status,
+    error ,
+  } = articleApi.usePinnedArticlesQuery();
+
   const items: IArticle[] = pinnedArticlesData?.data || [];
 
   if (status === 'pending') return <FullPageWrapper><Spinner/></FullPageWrapper>
@@ -15,12 +20,13 @@ export function HotNews() {
   if (status === 'error')
     return <FullPageWrapper>{ error?.toString() }</FullPageWrapper>
 
+
   return (
 
-      <div className={cn('flex-grid', styles.hotNews)}>
+      <div className={ cn('flex-grid', styles.hotNews) }>
 
         { items.map((article: IArticle) => (
-            <PinnedCard articleData={ article } key={ article.id }/>))}
+            <PinnedCard articleData={ article } key={ article.id }/>)) }
       </div>
   );
 }

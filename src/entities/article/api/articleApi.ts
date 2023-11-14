@@ -39,7 +39,7 @@ export const articleKeys = {
   },
 };
 
-const DEFAULT_LIMIT = 10;
+const DEFAULT_LIMIT: number = 10;
 export const useInfinityArticles = (query: GlobalFeedQuery) => {
   return useInfiniteQuery({
     queryKey: articleKeys.articles.newsFeed.root(),
@@ -70,10 +70,8 @@ export const usePinnedArticlesQuery = () =>
   });
 
 export const useArticle = (articleURL: string) =>
-  useQuery<IArticle, Error, IArticle, string[]>({
+  useQuery({
     queryKey: articleKeys.article.articleURL(articleURL),
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     queryFn: async (): Promise<IArticle | unknown> => {
       return await Api.articles.getArticle(articleURL);
     },
