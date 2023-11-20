@@ -4,7 +4,7 @@ import cn from "classnames";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg";
-  variant?: "primary" | "filled" | "outline";
+  variant?: "primary" | "filled" | "outline" | "link";
 }
 
 export function Button(props: Props) {

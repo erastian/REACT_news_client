@@ -72,7 +72,7 @@ export const usePinnedArticlesQuery = () =>
 export const useArticle = (articleURL: string) =>
   useQuery({
     queryKey: articleKeys.article.articleURL(articleURL),
-    queryFn: async (): Promise<IArticle | unknown> => {
+    queryFn: async (): Promise<IArticle> => {
       return await Api.articles.getArticle(articleURL);
     },
   });

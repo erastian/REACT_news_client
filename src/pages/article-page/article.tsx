@@ -10,7 +10,8 @@ import ImgNotFoundWide from '~assets/img-not-found-wide.svg'
 
 export function Article() {
   const { articleURL } = useParams();
-  const { data: article, status, error } = articleApi.useArticle(articleURL!)
+  const { data: article, status, error } = articleApi.useArticle(articleURL!);
+
   useDocumentTitle(`News Portal: ${ article?.title } `);
 
 
