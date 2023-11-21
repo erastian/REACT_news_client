@@ -24,31 +24,33 @@ export function NewsFeed() {
 
   if (status === "pending")
     return (
-      <FullPageWrapper>
-        <Spinner />
-      </FullPageWrapper>
+        <FullPageWrapper>
+          <Spinner/>
+        </FullPageWrapper>
     );
 
   if (status === "error")
-    return <FullPageWrapper>{error?.toString()}</FullPageWrapper>;
+    return <FullPageWrapper>{ error?.toString() }</FullPageWrapper>;
 
   return (
-    <div className={styles.feedWrapper}>
-      {items.map((article: IArticle) => (
-        <Card articleData={article} key={article.id} />
-      ))}
+      <div className={ styles.feedWrapper }>
+        { items.map((article: IArticle) => (
+            <Card articleData={ article } key={ article.id }/>
+        )) }
 
-      <div className="flex-grid">
-        <Button
-          className={cn("mx-auto", "mb-5")}
-          disabled={!hasNextPage || isFetchingNextPage}
-          variant="outline"
-          size="lg"
-          onClick={() => fetchNextPage()}
-        >
-          LOAD MORE NEWS
-        </Button>
+        <div className="flex-grid">
+          <div className={ cn("mx-auto", "mb-5") }>
+
+            <Button
+                disabled={ !hasNextPage || isFetchingNextPage }
+                variant="outline"
+                size="lg"
+                onClick={ () => fetchNextPage() }
+            >
+              LOAD MORE NEWS
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
   );
 }
