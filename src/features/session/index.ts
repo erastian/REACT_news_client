@@ -1,7 +1,4 @@
-import { useContext } from "react";
-import { AuthContext } from './api/useAuth.tsx'
-export { AuthProvider } from './api/useAuth.tsx'
-
-export default function useAuth() {
-  return useContext(AuthContext);
-}
+// export * from './register';
+export * from './login';
+export * from './logout';
+// export * from './update-current-user';

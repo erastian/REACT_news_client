@@ -1,6 +1,7 @@
 import ApiInstance from "~shared/api/base.ts";
 import { IArticle } from "~entities/article/";
 import { ICredentials, IUser } from "~shared/api";
+import { INewUser } from "~shared/api/models/types.ts";
 
 export interface IArticleListData<T> {
   limit: number;
@@ -35,17 +36,21 @@ export class Api {
       const { data } = await ApiInstance.post('/auth/login', user);
       return data;
     },
-    currentUser: async () => {
-      const { data } = await ApiInstance.get<{user: IUser}>('/users/profile');
+    getCurrentUser: async () => {
+      const { data } = await ApiInstance.get<{ user: IUser }>('/users/profile');
       return data;
     },
     fetchToken: async () => {
-      const { data } = await ApiInstance.get<{accessToken: string}>('/auth/token');
+      const { data } = await ApiInstance.get<{ accessToken: string }>('/auth/token');
       return data;
     },
-    register: async (userData: IUser) => {
+    register: async (userData: INewUser) => {
       const { data } = await ApiInstance.post('/auth/register', userData);
       return data;
     },
+    logout: async () => {
+      const { data } = await ApiInstance.get('/auth/logout');
+      return data
+    }
   }
 }

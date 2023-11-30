@@ -15,3 +15,9 @@ export interface IUser {
   email: string;
   role: Roles;
 }
+
+export interface INewUser {
+  username: string;
+  email: string;
+  password: string;
+}

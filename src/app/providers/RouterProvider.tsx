@@ -4,6 +4,7 @@ import { PAGE_PATH } from "~shared/config";
 
 import { MainLayout } from "~pages/main-layout/MainLayout.tsx";
 import { AuthLayout } from "~pages/auth-layout/AuthLayout.tsx";
+// import { sessionModel } from "~entities/session";
 
 const Login = lazy(() => import('~pages/login'));
 const Register = lazy(() => import('~pages/register'));
@@ -12,6 +13,8 @@ const ArticlePage = lazy(() => import('~pages/article-page'));
 const Page404 = lazy(() => import('~pages/page-404'));
 
 export function Router() {
+  // const isAuth = sessionModel.useAuth();
+
   return useRoutes([
     {
       element: <AuthLayout/>,

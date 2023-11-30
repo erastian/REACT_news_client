@@ -1,29 +1,27 @@
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { yupResolver } from '@hookform/resolvers/yup';
-import styles from './login.module.css'
+import styles from "./register.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { PAGE_PATH } from "~shared/config";
 import { InputText } from "~shared/ui/forms";
-import { Link, useNavigate } from "react-router-dom";
 import { Button } from "~shared/ui/button";
-import { useLoginUser } from "~features/session";
-import { sessionModel } from "~entities/session";
+import { useRegisterUser } from "~features/session/register";
+
 
 interface IFormInputs {
   email: string;
   password: string;
+  username: string;
 }
-
-// interface Props {
-//   login: (data: IFormInputs) => void;
-// }
 
 const validationSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required().min(8),
+  username: yup.string().required(),
 }).required();
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const {
     control,
     handleSubmit,
@@ -32,33 +30,31 @@ export const LoginForm = () => {
     defaultValues: {
       email: '',
       password: '',
+      username: '',
     },
     resolver: yupResolver(validationSchema)
   });
 
-  const { mutate, isError, error } = useLoginUser();
+  const { mutate, isError, error } = useRegisterUser();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     mutate(data, {
       onSuccess: (response) => {
-        const {user, accessToken} = response;
-        sessionModel.addUserToStore(user);
-        sessionModel.addAccessTokenToStore(accessToken);
-        navigate(PAGE_PATH.root);
-      },
+        console.log(response);
+        navigate(PAGE_PATH.login);
+      }
     })
   }
 
   const validateSubmit = Object.keys(errors).length > 0;
 
+
   return (
-      <div className={ styles.loginContainer }>
-        <h3>Login into account</h3>
-
-        {isError && <div>{error?.message}</div>}
-
-        <form role='form' autoComplete='off' onSubmit={ handleSubmit(onSubmit) }>
+      <div className={ styles.container }>
+        <h3>Registration</h3>
+        <p className=''>Already have the account? <Link to={ PAGE_PATH.login }>Login</Link></p>
+        <form onSubmit={ handleSubmit(onSubmit) } role='form' className={ styles.form } autoComplete='off'>
           <Controller
               name='email'
               control={ control }
@@ -87,11 +83,30 @@ export const LoginForm = () => {
                       { ...field }
                   />) }
           />
-          <p><Link to={ PAGE_PATH.forgot }>Forgot Password?</Link></p>
+          <Controller
+              name='username'
+              control={ control }
+              render={ ({ field }) => (
+                  <InputText
+                      type='text'
+                      placeholder='Add your Username'
+                      label='Username'
+                      role='username'
+                      error={ !!errors.username }
+                      helperMessage={ errors.username?.message }
+                      { ...field }
+                  />
+              ) }/>
+
+          {isError && <div>{error?.message}</div>}
+
           <div className="">
-            <Button type='submit' disabled={ validateSubmit }>LOGIN</Button>
+            <Button type='submit' disabled={ validateSubmit }>REGISTER</Button>
           </div>
         </form>
       </div>
-  );
+  )
+
 }
+
+
