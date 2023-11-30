@@ -85,6 +85,9 @@
         width: 100%;
         flex: 0 0 auto;
     }
+    .d-none {
+        display: none;
+    }
 }
 
 
@@ -110,5 +113,8 @@
     .m-col-12 {
         width: 100%;
         flex: 0 0 auto;
+    }
+    .m-none {
+        display: none;
     }
 }

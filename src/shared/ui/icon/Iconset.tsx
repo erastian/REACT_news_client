@@ -12,6 +12,7 @@ type IIconProps = {
       'menu' |
       'logout' |
       'info' |
+      'error' |
       'eye-slash' |
       'eye' |
       'edit' |

@@ -16,15 +16,15 @@ const queryClient = new QueryClient({
   }
 });
 
-export function Provider() {
+export function GlobalProvider() {
   return (
-      <QueryClientProvider client={ queryClient }>
-        <BrowserRouter>
-          <Suspense fallback={ <FullPageWrapper><Spinner/></FullPageWrapper> }>
-            <Router/>
-          </Suspense>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <BrowserRouter>
+        <QueryClientProvider client={ queryClient }>
+              <Suspense fallback={ <FullPageWrapper><Spinner/></FullPageWrapper> }>
+                <Router/>
+              </Suspense>
+          <ReactQueryDevtools initialIsOpen={ false }/>
+        </QueryClientProvider>
+      </BrowserRouter>
   )
 }

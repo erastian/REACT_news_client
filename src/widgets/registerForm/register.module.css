@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.container p {
+    margin-bottom: 2rem;
+    color: var(--color-neutral-secondary-dark);
+    font-size: .875rem;
+}
+.container h3 {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-headings);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+.container a {
+    color: var(--color-primary-accent);
+    text-decoration: underline;
+}
+.container button {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}

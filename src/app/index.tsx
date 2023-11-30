@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import { Provider } from './providers'
+import { GlobalProvider } from './providers'
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<Provider />)
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<GlobalProvider />)
 

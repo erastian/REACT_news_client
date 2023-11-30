@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.leftPanel {
+    background-color: var(--color-primary-accent);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.rightPanel {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.backBtn {
+    margin: 1.25rem 0 0 3.5rem;
+    color: var(--color-white);
+}
+.bigLogo {
+    margin: auto;
+}
+
+.bigLogo a {
+    position: relative;
+    top: -30px;
+}

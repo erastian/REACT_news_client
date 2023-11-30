@@ -187,7 +187,10 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
-
+::file-selector-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;

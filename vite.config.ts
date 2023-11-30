@@ -18,4 +18,8 @@ export default defineConfig({
       '~widgets': path.resolve('src/widgets'),
     },
   },
+  server: {
+    host: true,
+    // port: 80
+  }
 })

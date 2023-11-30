@@ -1,0 +1,169 @@
+.inputHolder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.formLabel {
+    font-size: var(--font-size-base);
+    font-style: var(--font-family-base);
+    font-weight: 600;
+    color: var(--color-secondary-dark);
+    margin-bottom: .5rem;
+}
+.formLabel.disabled {
+    color: var(--color-disabled);
+}
+
+.formInput {
+    padding: .88rem .75rem;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    line-height: normal;
+    color: var(--color-primary-dark);
+    appearance: none;
+    background-color: var(--color-white);
+    background-clip: padding-box;
+    border: 1px solid var(--color-gray);
+    border-radius: .25rem;
+    box-shadow: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .formInput {
+        transition: none;
+    }
+}
+.formInput[type="file"] {
+    overflow: hidden;
+}
+.formInput[type="file"]:not(:disabled):not([readonly]) {
+    cursor: pointer;
+}
+.formInput:focus {
+    color: var(--color-primary-dark);
+    background-color: var(--color-white);
+    border-color: var(--color-tertiary-dark);
+    outline: 0;
+    box-shadow: 0 0 6px 0 #0000F6;
+}
+.formInput::-moz-placeholder {
+    color: var(--color-gray);
+    opacity: 1;
+}
+.formInput::placeholder {
+    color: var(--color-gray);
+    opacity: 1;
+}
+.formInput:disabled {
+    background-color: var(--color-on-disabled);
+    border-color: var(--color-disabled);
+    opacity: 1;
+}
+
+.formInput.error,
+.formInput.error:hover {
+    border-color: var(--color-danger);
+}
+
+.pwdIcon {
+    color: var(--color-tertiary-dark);
+    position: absolute;
+    cursor: pointer;
+    top: 2.75rem;
+    right: 1rem;
+    line-height: .75rem;
+}
+.formTextarea {
+    min-height: 6rem;
+    resize: vertical;
+    border-radius: .25rem;
+    border: 1px solid var(--color-gray);
+
+}
+.formTextarea::placeholder,
+.formTextarea::-webkit-input-placeholder {
+    padding-left: .5rem;
+}
+.formTextarea:focus {
+    box-shadow: 0 0 6px 0 #0000F6;
+    border-color: var(--color-tertiary-dark);
+    outline: none;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.formContainer:active {
+    box-shadow: 0 0 6px 0 #0000F6;
+}
+.formFile {
+    display: none;
+}
+.formFileContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid var(--color-tertiary-dark);
+    margin-right: -1px;
+    border-radius: .25rem 0 0 .25rem;
+    padding-left: .75rem;
+    color: var(--color-gray);
+}
+.formFilename {
+    color: var(--color-primary-dark);
+    overflow: hidden;
+}
+.formFileRemoveIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .6rem;
+    color: var(--color-primary-dark);
+}
+.formFileRemoveIcon:hover {
+    cursor: pointer;
+}
+.formFileButton {
+    border: 1px solid var(--color-primary-accent);
+    color: var(--color-primary-accent);
+    border-radius: 0 .25rem .25rem 0;
+    padding: .625rem 1rem;
+    cursor: pointer;
+    font-size: var(--font-size-semi-heading);
+    letter-spacing: .03rem;
+}
+.formMessage {
+    display: flex;
+    margin-top: .25rem;
+}
+.formMessage svg {
+    color: var(--color-gray);
+}
+.formMessage span {
+    margin-left: .33rem;
+    color: var(--color-tertiary-dark);
+}
+
+.inputHolder:global(.error) .formMessage span {
+    color: var(--color-danger);
+}
+.inputHolder:global(.error) .formInput {
+    border-color: var(--color-danger);
+}
+
+.inputHolder:global(.disabled) .formLabel {
+    color: var(--color-disabled);
+}
+.inputHolder:global(.disabled) .formInput {
+    background-color: var(--color-disabled);
+    border-color: #9FA3A5;
+    cursor: not-allowed;
+}
+.inputHolder:global(.disabled) .formInput::placeholder {
+    color: #9FA3A5;
+}
