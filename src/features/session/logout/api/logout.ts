@@ -1,8 +1,9 @@
-import { sessionModel, sessionApi } from "~entities/session";
+import { sessionApi } from "~entities/session";
 import { QueryClient } from '@tanstack/react-query';
+import { Api } from "~shared/api";
 
-export function logout(queryClient: QueryClient) {
+export async function logout(queryClient: QueryClient) {
   queryClient.removeQueries({ queryKey: sessionApi.sessionKeys.session.currentUser(), exact: true });
-  sessionModel.removeUserFromStore();
-  sessionModel.removeAccessTokenFromStore();
+  await Api.users.logout().then(r => console.log('Server message: ', r));
+  localStorage.removeItem('accessToken');
 }

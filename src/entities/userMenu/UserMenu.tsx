@@ -3,15 +3,24 @@ import { Button } from "~shared/ui/button";
 import { PAGE_PATH } from "~shared/config";
 import { Link } from "react-router-dom";
 
-import { sessionModel } from "~entities/session";
+import { sessionApi } from "~entities/session";
 import { useQueryClient } from "@tanstack/react-query";
 import { logout } from "~features/session";
+import { IUser } from "~shared/api";
+import { sessionKeys } from "~entities/session/api/sessionApi.ts";
 
 export function UserMenu() {
-  const user = sessionModel.useCurrentUser();
-
   const queryClient = useQueryClient();
-  const logoutClick = () => logout(queryClient);
+  sessionApi.useCurrentUser();
+
+
+  const user = queryClient.getQueryData<IUser>(sessionKeys.session.currentUser())
+
+  const logoutClick = () => {
+    logout(queryClient);
+  }
+
+  console.log(user)
 
   return user ? (
       <div>

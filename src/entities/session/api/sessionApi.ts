@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Api } from "~shared/api";
-import { addUserToStore } from "~entities/session/model/sessionModel.ts";
+import { Api, IUser } from "~shared/api";
 
 
 export const sessionKeys = {
@@ -15,14 +14,12 @@ export const sessionKeys = {
 }
 
 export const useCurrentUser = () => {
-  useQuery({
+  useQuery<IUser | Error>({
     queryKey: sessionKeys.session.currentUser(),
-    queryFn: async () => {
+    queryFn: async (): Promise<IUser | Error> => {
       const response = await Api.users.getCurrentUser();
-      const user = response.user;
 
-      addUserToStore(user);
-      return user
+      return response.user
     }
   })
 }

@@ -7,7 +7,6 @@ import { InputText } from "~shared/ui/forms";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "~shared/ui/button";
 import { useLoginUser } from "~features/session";
-import { sessionModel } from "~entities/session";
 
 interface IFormInputs {
   email: string;
@@ -42,9 +41,8 @@ export const LoginForm = () => {
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     mutate(data, {
       onSuccess: (response) => {
-        const {user, accessToken} = response;
-        sessionModel.addUserToStore(user);
-        sessionModel.addAccessTokenToStore(accessToken);
+        const {accessToken} = response;
+        localStorage.setItem('accessToken', accessToken);
         navigate(PAGE_PATH.root);
       },
     })
