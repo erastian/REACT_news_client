@@ -8,19 +8,19 @@ import { useQueryClient } from "@tanstack/react-query";
 import { logout } from "~features/session";
 import { IUser } from "~shared/api";
 import { sessionKeys } from "~entities/session/api/sessionApi.ts";
+import { useState } from "react";
 
 export function UserMenu() {
   const queryClient = useQueryClient();
   sessionApi.useCurrentUser();
-
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
   const user = queryClient.getQueryData<IUser>(sessionKeys.session.currentUser())
 
-  const logoutClick = () => {
-    logout(queryClient);
+  const logoutClick = async () => {
+    await logout(queryClient);
+    setIsLoggedIn(false);
   }
-
-  console.log(user)
 
   return user ? (
       <div>
