@@ -127,3 +127,11 @@
 .button.filled:disabled:hover {
     box-shadow: none;
 }
+
+.link {
+    border: none;
+    background: none;
+}
+.link:hover {
+    filter: drop-shadow(0 0 3px var(--color-gray));
+}
