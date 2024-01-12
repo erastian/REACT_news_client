@@ -29,11 +29,11 @@ ApiInstance.interceptors.response.use(
 
     async (error) => {
       const prevRequest = error.config;
-      if (error.response.status === 403 && prevRequest._retry) {
+      if (error.response.status === 403 && !prevRequest._retry) {
         prevRequest._retry = true;
 
         try {
-          await Api.users.fetchToken()
+          await Api.users.fetchToken();
           prevRequest.headers.Authorization = `Bearer ${ localStorage.getItem("accessToken") }`;
 
           return ApiInstance(prevRequest);

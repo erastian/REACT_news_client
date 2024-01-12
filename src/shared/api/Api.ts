@@ -42,7 +42,7 @@ export class Api {
     },
     fetchToken: async () => {
       const { data } = await ApiInstance.get<{ accessToken: string }>('/auth/token');
-      return data;
+      localStorage.setItem('accessToken', data.accessToken)
     },
     register: async (userData: INewUser) => {
       const { data } = await ApiInstance.post('/auth/register', userData);
