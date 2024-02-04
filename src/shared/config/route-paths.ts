@@ -10,5 +10,6 @@ export const PAGE_PATH = {
   category: {
     categoryURL: (categoryURL: string) => `/category/${categoryURL}`
   },
+  categories: '/categories',
   page404: '/404'
 }
