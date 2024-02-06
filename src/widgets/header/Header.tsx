@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import UserMenu from "~entities/userMenu";
+import UserMenu from "~features/userMenu";
 import styles from './header.module.css';
 import Logo from "~assets/logo.svg?react";
 import { PAGE_PATH } from "~shared/config";

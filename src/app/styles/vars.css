@@ -20,6 +20,7 @@
     --font-family-base: 'Open Sans', sans-serif;
     --font-family-headings: 'Merriweather', serif;
     --font-size-base: 16px;
+    --font-weight: 400;
     --font-size-headings: calc(var(--font-size-base) * 1.5);
     --font-size-semi-heading: calc(var(--font-size-base) * 1.125);
     --font-size-regular: var(--font-size-base);
