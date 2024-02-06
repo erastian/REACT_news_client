@@ -1,3 +1,3 @@
-import { useDocumentTitle } from "./DocumentTitle.tsx";
+import { useDocumentTitle } from "./DocumentTitle.ts";
 
 export default useDocumentTitle;

@@ -1,0 +1,1 @@
+export * as categoriesApi from './api/categoriesApi.ts';

@@ -21,3 +21,9 @@ export interface INewUser {
   email: string;
   password: string;
 }
+
+export interface ICategory {
+  id: string;
+  title: string;
+  url: string;
+}
